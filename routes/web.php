@@ -16,3 +16,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('register', 'RegistrationController@create')->name('register');
+Route::post('/register', 'RegistrationController@store');
+
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MyTestEmail;
+
+Route::get('/send-email', function () {
+    Mail::to('example@email.com')->send(new MyTestEmail());
+    return 'Email sent!';
+});
+
